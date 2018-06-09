@@ -1,4 +1,5 @@
 defmodule Ueberauth.Strategy.Auth0 do
+require Logger
     @moduledoc """
   Provides an Ueberauth strategy for authenticating with Auth0.
 
@@ -36,6 +37,7 @@ defmodule Ueberauth.Strategy.Auth0 do
     opts = Keyword.put(opts, :redirect_uri, callback_url(conn))
     module = option(conn, :oauth2_module)
     callback_url = apply(module, :authorize_url!, [opts])
+    Logger.info(inspect(callback_url))
     redirect!(conn, callback_url)
   end
 
