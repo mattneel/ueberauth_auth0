@@ -38,6 +38,7 @@ require Logger
     module = option(conn, :oauth2_module)
     callback_url = apply(module, :authorize_url!, [opts])
     Logger.info(inspect(callback_url))
+    Logger.info(inspect(conn))
     redirect!(conn, callback_url)
   end
 
